@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using ForumProject.Models;
 using ForumProject.Models.ManageViewModels;
 using ForumProject.Services;
+using ForumProject.Data.Models;
 
 namespace ForumProject.Controllers
 {

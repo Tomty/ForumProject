@@ -3,6 +3,7 @@ using ForumProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ForumProject.Service
@@ -39,7 +40,16 @@ namespace ForumProject.Service
 
         public Forum GetById(int id)
         {
-            throw new NotImplementedException();
+            var forum = _context.Forums
+                .Where(f => f.Id == id)
+                .Include(f => f.Posts)
+                    .ThenInclude(f => f.User)
+                .Include(f => f.Posts)
+                    .ThenInclude(p => p.PostReply)
+                        .ThenInclude(r => r.User)
+                .FirstOrDefault();
+
+            return forum;
         }
 
         public Task UpdateDescription(int forumId, string newDescription)

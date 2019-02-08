@@ -9,6 +9,7 @@ namespace ForumProject.Data
         Post GetById();
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
+        IEnumerable<Post> GetPostsByForum(int id);
 
         Task Add(Post post);
         Task Delete(int id);

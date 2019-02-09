@@ -43,7 +43,7 @@ namespace ForumProject.Service
             throw new NotImplementedException();
         }
 
-        public Post GetById()
+        public Post GetById(int id)
         {
             throw new NotImplementedException();
         }

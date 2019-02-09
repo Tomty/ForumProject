@@ -45,7 +45,12 @@ namespace ForumProject.Service
 
         public Post GetById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Posts.Where(p => p.Id == id)
+                .Include(p => p.User)
+                .Include(p => p.PostReply)
+                    .ThenInclude(r => r.User)
+                .Include(p => p.Forum)
+                .First();
         }
 
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)

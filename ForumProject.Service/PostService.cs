@@ -18,9 +18,10 @@ namespace ForumProject.Service
             _context = context;
         }
 
-        public Task Add(Post post)
+        public async Task Add(Post post)
         {
-            throw new NotImplementedException();
+            _context.Add(post);
+            await _context.SaveChangesAsync();
         }
 
         public Task AddREply(PostReply reply)
@@ -62,7 +63,9 @@ namespace ForumProject.Service
         {
             return _context.Forums
                 .Where(f => f.Id == id)
-                .First().Posts;
+                .First()
+                .Posts;
+
         }
     }
 }

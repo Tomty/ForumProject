@@ -10,11 +10,11 @@ namespace ForumProject.Data
         IEnumerable<Post> GetAll();
         IEnumerable<Post> GetFilteredPosts(string searchQuery);
         IEnumerable<Post> GetPostsByForum(int id);
+        IEnumerable<Post> GetLatestPosts(int n);
 
         Task Add(Post post);
         Task Delete(int id);
         Task EditPostContent(int id, string newContent);
-        Task AddREply(PostReply reply);
-
+        Task AddREply(PostReply reply);   
     }
 }

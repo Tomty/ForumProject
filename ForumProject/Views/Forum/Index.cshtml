@@ -1,24 +1,25 @@
 ﻿@model ForumProject.Models.Forum.ForumIndexModel
 
-<h1>Forums</h1>
+<h1 style="color: white;">Forums</h1>
 
-<table class="table table-hover" id ="forumIndexTable">
+<div class="row forumIndexContent">
+    <table class="table table-hover table-bordered" id="ForumIndexTable">
+        <tbody>
+            @foreach (var forum in Model.ForumList)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
+                            @forum.Name
+                        </a>
+                    </td>
+                    <td>
+                        @forum.Description
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-    <tbody>
-        @foreach(var forum in Model.ForumList)
-        {
-            <tr>
-                <td>
-                    <a asp-controller="Forum" asp-action="Topic" asp-route-id="@forum.Id">
-                        @forum.Name
-                    </a>
-                </td>
-                <td>
-                    @forum.Description
-                </td>
-            </tr>
-        }
-    </tbody>
-
-</table>
 

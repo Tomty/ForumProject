@@ -23,32 +23,34 @@ namespace ForumProject.Controllers
             return View();
         }
 
-        //public IActionResult Results(string searchQuery)
-        //{
-        //    var posts = _postService.GetFilteredPosts(searchQuery);
+        public IActionResult Results(string searchQuery)
+        {
+            var posts = _postService.GetFilteredPosts(searchQuery);
 
-        //    var areNoResults = (!string.IsNullOrEmpty(searchQuery) && !posts.Any());
+            var areNoResults = (!string.IsNullOrEmpty(searchQuery) && !posts.Any());
 
-        //    var postListings = posts.Select(p => new PostListingModel
-        //    {
-        //        Id = p.Id,
-        //        AuthorId = p.User.Id,
-        //        AuthorName = p.User.UserName,
-        //        AuthorRating = p.User.Rating,
-        //        Title = p.Title,
-        //        DatePosted = p.Created.ToString(),
-        //        RepliesCount = p.PostReply.Count(),
-        //        Forum = BuildForumListing(p)
-        //    });
+            var postListings = posts.Select(p => new PostListingModel
+            {
+                Id = p.Id,
+                AuthorId = p.User.Id,
+                AuthorName = p.User.UserName,
+                AuthorRating = p.User.Rating,
+                Title = p.Title,
+                DatePosted = p.Created.ToString(),
+                RepliesCount = p.PostReply.Count(),
+                Forum = BuildForumListing(p)
+            });
 
-        //    var model = new SearchResultModel
-        //    {
-        //        Posts = postListings,
-        //        SearchQuery = searchQuery,
-        //        EmptySearchResults = areNoResults
+            var model = new SearchResultModel
+            {
+                Posts = postListings,
+                SearchQuery = searchQuery,
+                EmptySearchResults = areNoResults
 
-        //    };
-        //}
+            };
+
+            return View(model);
+        }
 
         private ForumListingModel BuildForumListing(Post p)
         {

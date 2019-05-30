@@ -1,5 +1,6 @@
 ﻿using ForumProject.Data;
 using ForumProject.Data.Models;
+using ForumProject.Models.ApplicationUser;
 using ForumProject.Models.Forum;
 using ForumProject.Models.Post;
 using ForumProject.Models.Search;
@@ -26,7 +27,21 @@ namespace ForumProject.Controllers
 
         public IActionResult Detail(string id)
         {
-            return View();
+            var user = _userService.GetById(id);
+            var userRoles = _userManager.GetRolesAsync(user).Result;
+
+            var model = new ProfileModel()
+            {
+                UserId = user.Id,
+                UserName = user.UserName,
+                UserRating = user.Rating.ToString(),
+                Email = user.Email,
+                ProfileImageUrl = user.ProfileImageUrl,
+                MemberSince = user.MemberSince,
+                IsAdmin = userRoles.Contains("Admin")
+            };
+
+            return View(model);
         }
 
         
